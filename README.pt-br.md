@@ -337,7 +337,8 @@ protocol ViewCodeConstraintsProtocol {
     func setupConstraints()
 }
 ```
-O protocolo `ViewCodeProtocol` define 4 métodos: 
+O protocolo `ViewCodeProtocol` define 4 métodos:
+* `setupViewCodeElements`: método "principal" do protocolo;
 * `setupElementsHierarchy`: para inclusão de elementos da *view* na hierarquia;
 * `setupConstraints`: para definição de *constraints*;
 * `extraSetup`: para demais configurações dos elementos de *view*;
