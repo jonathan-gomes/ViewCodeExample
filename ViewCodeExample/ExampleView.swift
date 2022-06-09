@@ -36,22 +36,37 @@ class ExampleView: UIView {
     }
 }
 
-extension ExampleView {
-    func setupViewCodeElements() {
-        self.backgroundColor = .white
-        
-        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(buttonTap)))
+// MARK: extensions - ViewCode
+extension ExampleView: ViewCodeProtocol {
+    func setupElementsHierarchy() {
         self.addSubview(button)
         self.addSubview(label)
-        
+    }
+    func extraSetup() {
+        self.backgroundColor = .white
+        button.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(buttonTap)))
+    }
+}
+
+// MARK: extensions - Constraints
+extension ExampleView: ViewCodeConstraintsProtocol {
+    func setupConstraints() {
+        setupLabelConstraints()
+        setupButtonConstraints()
+    }
+    
+    func setupLabelConstraints() {
         NSLayoutConstraint.activate([
             label.centerXAnchor
                 .constraint(equalTo: self.centerXAnchor, constant: 0),
             label.centerYAnchor
                 .constraint(equalTo: self.centerYAnchor, constant: 0),
             label.widthAnchor.constraint(equalToConstant: 200),
-            label.heightAnchor.constraint(equalToConstant: 30),
-            
+            label.heightAnchor.constraint(equalToConstant: 30)
+        ])
+    }
+    func setupButtonConstraints() {
+        NSLayoutConstraint.activate([
             button.centerXAnchor
                 .constraint(equalTo: self.centerXAnchor, constant: 0),
             button.topAnchor.constraint(equalTo: self.label.bottomAnchor, constant: 10),
