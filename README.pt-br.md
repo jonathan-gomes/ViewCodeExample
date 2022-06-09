@@ -36,9 +36,11 @@ A tabela a seguir é uma <u>comparação livre</u> feita observando prós/contra
 
 ### Configuração de projeto usando View Code
 Ao criarmos um projeto no Xcode (target iOS 11) temos a seguinte estrutura:
+
 ![Projeto padrão criado no Xcode](doc_resources/01.png)
 
 Por padrão, ao escolher *Storyboard* como tipo de view (opção *interface* ao criar um projeto), o XCode define os arquivos `LaunchScreen.storyboard` e `Main.storyboard` como entradas do app.
+
 ![Opções gerais do projeto padrão](doc_resources/02.png)
 
 Apesar de ser possível remover o valor do campo “*Main Interface*”, se o mesmo for feito para "*Launch Screen File*" o app não terá compatibilidade completa com versões do iOS anteriores ao 13.0, então vamos deixar esse campo intacto.
@@ -76,6 +78,7 @@ class ViewController: UIViewController {
 }
 ```
 Pronto, uma versão base de um app quase sem xib ou *storyboard* (exceto pelo *storyboard* *launch*):
+
 ![Adicionar o parâmetro Launch Screen](doc_resources/05.png)
 
 
