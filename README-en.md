@@ -44,9 +44,11 @@ By default, when you choose *Storyboard* as your interface type, Xcode sets the 
 
 ![Project General options](doc_resources/02.png)
 
+Although you can remove the “Main Interface” value, if you do the same for “Launch Screen File” the app won’t be full compatible with iOS versions before 13.0, so we going to let the launch storyboard file be.
+
 For the app's entry point to be declared on code the following steps are needed:
 
-1. On project's target settings, go to the "General" tab and remove the "Main Interface" and "Launch Screen File" values
+1. On project's target settings, go to the "General" tab and remove the "Main Interface" value.
 1. Set *window* and attribute a *View Controller* on *AppDelegate*:
     ```
     import UIKit
@@ -64,15 +66,9 @@ For the app's entry point to be declared on code the following steps are needed:
         }
     }
     ```
-1. Remove "Launch screen interface file base name" from `Info.plist`file:
-    ![Removing Launch screen interface file base name](doc_resources/03.png)
+1. Remove the main default storyboard file.
 
-1. Add "Launch Screen" parameter to `Info.plist`, setting an image for the app loading screen (splash screen):
-    ![Adding Launch Screen](doc_resources/04.png)
-
-1. Finally, remove the two default storyboard file.
-
-For testing if this "storyboard free" app is working, set a different color for the background view of the ViewController: 
+For testing if this almost "storyboard free" app is working, set a different color for the background view of the ViewController: 
 ```
 import UIKit
 
@@ -83,7 +79,7 @@ class ViewController: UIViewController {
     }
 }
 ```
-All done! A base version of an iOS app without any storyboard or xib file:
+All done! A base version of an iOS app *almost* without storyboard or xib file (except for the launch storyboard):
 ![View Code Base app](doc_resources/05.png)
 
 

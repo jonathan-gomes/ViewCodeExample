@@ -41,8 +41,10 @@ Ao criarmos um projeto no Xcode (target iOS 11) temos a seguinte estrutura:
 Por padrão, ao escolher *Storyboard* como tipo de view (opção *interface* ao criar um projeto), o XCode define os arquivos `LaunchScreen.storyboard` e `Main.storyboard` como entradas do app.
 ![Opções gerais do projeto padrão](doc_resources/02.png)
 
+Apesar de ser possível remover o valor do campo “*Main Interface*”, se o mesmo for feito para "*Launch Screen File*" o app não terá compatibilidade completa com versões do iOS anteriores ao 13.0, então vamos deixar esse campo intacto.
+
 Para que a entrada do app seja declarada em código é necessário:
-1. Remover o conteúdo dos campos "*Main Interface*" e "*Launch Screen File*" na aba "*General*" no *target* do projeto;
+1. Remover o conteúdo do campo "*Main Interface*" na aba "*General*" no *target* do projeto;
 1. Definir *window* e *View Controller* no *AppDelegate*:
     ```
     import UIKit
@@ -60,15 +62,9 @@ Para que a entrada do app seja declarada em código é necessário:
         }
     }
     ```
-1. Remover o parâmetro "*Launch screen interface file base name*" do arquivo `Info.plist`:
-    ![Removendo Launch screen interface file base name](doc_resources/03.png)
+1. Finalmente, remover o arquivo *Main.storyboard*.
 
-1. Adicionar o parâmetro "*Launch Screen*", definindo uma imagem para a tela de carregamento do app:
-    ![Adicionar o parâmetro Launch Screen](doc_resources/04.png)
-
-1. Finalmente, remover os dois aquivos padrão de *storyboard*.
-
-Para o teste da entrada no nosso app "*storyboard free*", 
+Para o teste da entrada no nosso app quase "*storyboard free*":
 ```
 import UIKit
 
@@ -79,7 +75,7 @@ class ViewController: UIViewController {
     }
 }
 ```
-Pronto, uma versão base de um app sem nenhum xib ou storyboard:
+Pronto, uma versão base de um app quase sem xib ou *storyboard* (exceto pelo *storyboard* *launch*):
 ![Adicionar o parâmetro Launch Screen](doc_resources/05.png)
 
 
