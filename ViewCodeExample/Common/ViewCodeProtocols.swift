@@ -26,5 +26,7 @@ extension ViewCodeProtocol {
 }
 
 protocol ViewCodeConstraintsProtocol {
+    associatedtype Dimens: CaseIterable
+    associatedtype Margins: CaseIterable
     func setupConstraints()
 }
