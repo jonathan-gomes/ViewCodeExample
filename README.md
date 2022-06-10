@@ -2,8 +2,19 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt-br.md)
 
+### Content
+* [What is View Code?](#what-is-view-code-)
+* [View Code project setup](#view-code-project-setup-)
+* [Creating a view](#creating-a-view-)
+* [Cleaning the code](#cleaning-the-code-)
+* [Setting a pattern](#setting-a-pattern-)
+* [Bonus: Using Case-less enums, associatedtypes and SwiftLint on View Code projects](#bonus-using-case-less-enums-associatedtypes-and-swiftlint-on-view-code-projects-)
+* [Case-less enums and associatedtypes](#case-less-enums-and-associatedtypes-)
+* [Constraint pattern x SwiftLint](#constraint-pattern-x-swiftlint-)
+* [Conclusion](#conclusion-)
 
-### What is View Code?
+
+### What is View Code? [⇡](#view-code)
 
 When you work on a versioned iOS project with **storyboards** or **xibs** view files, eventually you will face the not so pleasant task of merging these kinds of files.
 
@@ -35,7 +46,7 @@ The table below is a <u>free comparison</u> done by observing the pros and cons 
 |*Code verbosity|**Low**, the *Swift* code may be clean of the view implementation code, except for outlets and other bindings with the view components|**Yes**, *view* in declarative code increases code length|**Yes**, *view* in declarative code increases code length|
 
 
-### View Code project setup
+### View Code project setup [⇡](#view-code)
 When you create a project on Xcode (with iOS 11 as target) you get the following project structure:
 
 ![Default ios Xcode project](doc_resources/01.png)
@@ -83,7 +94,7 @@ All done! A base version of an iOS app *almost* without storyboard or xib file (
 ![View Code Base app](doc_resources/05.png)
 
 
-### Creating a View
+### Creating a View [⇡](#view-code)
 
 Let's create a simple view for the `ViewController`, containing a label and a button that changes the label value.
 ```
@@ -229,7 +240,7 @@ class ViewController: UIViewController {
 }
 ```
 
-### Cleaning the code
+### Cleaning the code [⇡](#view-code)
 Defining the view's elements and constraints on code can make it harder to understand.
 
 In the example, we added just 2 elements to the view, but that is not the case in real world applications where the views are much more complex. In those cases, setting all the elements in the `ViewController` would make you code very coupled, decreasing its maintainability.
@@ -307,7 +318,7 @@ class ViewController: UIViewController {
     }
 }
 ```
-### Setting a pattern
+### Setting a pattern [⇡](#view-code)
 For a team project, it's ideal to follow a pattern so you don't have to deal with many concurrent implementations.
 
 For View Code, it's possible to define a `protocol` to include constraints and defining constants for them:
@@ -426,10 +437,10 @@ extension ExampleView: ViewCodeConstraintsProtocol {
     }
 }
 ```
-## Bonus: Using *Case-less enums*, *associatedtypes* and *SwiftLint* on View Code projects
+## Bonus: Using *Case-less enums*, *associatedtypes* and *SwiftLint* on View Code projects [⇡](#view-code)
 
 
-### *Case-less enums* and *associatedtypes*
+### *Case-less enums* and *associatedtypes* [⇡](#view-code)
 The place where you define the values for the constants may be a point of concern. For the example, the values are being defined as it is set as parameters for the constraint's anchors.
 
 It's possible to improve the code readability and establish a pattern for defining constants using *case-less enums* and *associatedtype*
@@ -506,7 +517,7 @@ extension ExampleView: ViewCodeConstraintsProtocol {
     }
 }
 ```
-### Constraint pattern x SwiftLint
+### Constraint pattern x SwiftLint [⇡](#view-code)
 When the constraints are set on nested enums like at the example, another problem may come if the project is using SwiftLint.
 
 SwiftLint has a default rule called `nesting`, which sets that the code can only 1 level of nesting for `type`s.
@@ -533,7 +544,7 @@ nesting:
 With this set, an enum (or any other type) can have one more nesting level, the needed value for the suggest pattern.
 
 
-## Conclusion
+## Conclusion [⇡](#view-code)
 Developing with View Code provide both advantage and impose challenges. While on one hand we get a more refined control over the view implementation process and improving in maintainability, on the other we must deal with manual constraints settings, the need to build the app to view the changes on the absence of a native preview option and the increase at code size.
 
 To make it easier to work with constraints, it's possible to define patterns with protocols, case-less enums and associatedtypes so the view code can get cleaner and scalable.
