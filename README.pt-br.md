@@ -2,8 +2,19 @@
 [![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
 [![pt-br](https://img.shields.io/badge/lang-pt--br-green.svg)](README.pt-br.md)
 
+### Índice
+* [O que é View Code?](#o-que-%C3%A9-view-code-)
+* [Configuração de projeto usando View Code](#configura%C3%A7%C3%A3o-de-projeto-usando-view-code-)
+* [Criando uma View](#criando-uma-view-)
+* [Organizando o código](#organizando-o-c%C3%B3digo-)
+* [Definindo um padrão](#definindo-um-padr%C3%A3o-)
+* [Bônus: Usando *Case-less enums*, *associatedtypes* e *SwiftLint* em projetos View Code](#b%C3%B4nus-usando-case-less-enums-associatedtypes-e-swiftlint-em-projetos-view-code-)
+* [*Case-less enums* e *associatedtypes*](#case-less-enums-e-associatedtypes-)
+* [Padrão de *constraints* x *SwiftLint*](#padr%C3%A3o-de-constraints-x-swiftlint-)
+* [Conclusão](#conclus%C3%A3o-)
 
-### O que é View Code?
+
+### O que é View Code? [⇡](#view-code)
 
 Quando trabalhamos em projetos *iOS* versionados com *views* em **storyboards** ou **xibs**, eventualmente nos deparamos com a dura tarefa de fazer *merge* desses tipos de aquivos.
 
@@ -34,7 +45,7 @@ A tabela a seguir é uma <u>comparação livre</u> feita observando prós/contra
 |*Código "verboso"?*|**Não**, o código *Swift* pode ficar limpo do que é construção de *View*, exceto por *outlets* e outras ligações feitas com os componentes da *view* |**Sim**, *view* em código declarativo aumenta a quantidade de código|**Sim**, *view* em código declarativo aumenta a quantidade de código|
 
 
-### Configuração de projeto usando View Code
+### Configuração de projeto usando View Code [⇡](#view-code)
 Ao criarmos um projeto no Xcode (target iOS 11) temos a seguinte estrutura:
 
 ![Projeto padrão criado no Xcode](doc_resources/01.png)
@@ -82,7 +93,7 @@ Pronto, uma versão base de um app quase sem xib ou *storyboard* (exceto pelo *s
 ![Adicionar o parâmetro Launch Screen](doc_resources/05.png)
 
 
-### Criando uma View
+### Criando uma View [⇡](#view-code)
 
 Vamos fazer uma *view* simples para a *ViewController* que contenha uma *label* e um botão que faz o texto da *label* mudar.
 ```
@@ -228,7 +239,7 @@ class ViewController: UIViewController {
 }
 ```
 
-### Organizando o código
+### Organizando o código [⇡](#view-code)
 Com as definições de elementos da *view* e das *constraints* em `ViewController`, o código pode ficar de difícil legibilidade.
 
 No exemplo, incluímos apenas 2 elementos, porém em casos reais as *views* são muito mais complexas e a definição de todos os elementos na *ViewController* deixaria o código acoplado e prejudicaria a manutenção.
@@ -306,7 +317,7 @@ class ViewController: UIViewController {
     }
 }
 ```
-### Definindo um padrão
+### Definindo um padrão [⇡](#view-code)
 Para um projeto em equipe, é ideal que um padrão seja seguido para que não seja necessário lidar com implementações concorrentes.
 
 Para o *View Code*, é possível definir `protocol` para inclusão de *constraints* e para a definição das constantes:
@@ -425,10 +436,10 @@ extension ExampleView: ViewCodeConstraintsProtocol {
     }
 }
 ```
-## Bônus: Usando *Case-less enums*, *associatedtypes* e *SwiftLint* em projetos View Code
+## Bônus: Usando *Case-less enums*, *associatedtypes* e *SwiftLint* em projetos View Code [⇡](#view-code)
 
 
-### *Case-less enums* e *associatedtypes*
+### *Case-less enums* e *associatedtypes* [⇡](#view-code)
 O local de definição dos valores das constantes podem ser um ponto de preocupação. No exemplo esses valores estão sendo definidos ao passar o parâmetro aos metodos *constraint* das âncoras.
 É possível melhorar a legibilidade e estabelecer um padrão para a definição das constantes usando *case-less enums* e *associatedtype*
 
@@ -504,7 +515,7 @@ extension ExampleView: ViewCodeConstraintsProtocol {
     }
 }
 ```
-### Padrão de *constraints* x *SwiftLint*
+### Padrão de *constraints* x *SwiftLint* [⇡](#view-code)
 Quando as constraints são definidas em *enums* aninhados um outro problema pode surgir quando o projeto usa *SwiftLint*.
 
 O *SwiftLint* possui uma regra padrão chamada `nesting` que determina que o código pode ter até 1 nível de aninhamento:
@@ -531,7 +542,7 @@ nesting:
 Dessa forma um tipo (como um *enum*) pode passar a ter mais um nível de aninhamento, o necessário para usarmos o padrão sugerido.
 
 
-## Conclusão
+## Conclusão [⇡](#view-code)
 O desenvolvimento com *View Code* fornece vantagens e impõe desafios. Se por um lado temos um controle mais refinado da construção da interface de usuário e uma melhora na manutenabilidade do código da view, por outro temos que lidar com a definição manual de *constraints*, a necessidade de um novo *build* para visualizar as mudanças na falta de um *preview nativo* e o aumento da quantidade de código.
 
 Para facilitar o trabalho com *constraints* é possível estabelecer padrões com protocolos, *case-less enums* e *associatedtypes* para que o código da *view *seja mais limpo e organizado e mais facil de escalar.
