@@ -545,6 +545,6 @@ Dessa forma um tipo (como um *enum*) pode passar a ter mais um nível de aninham
 ## Conclusão [⇡](#view-code)
 O desenvolvimento com *View Code* fornece vantagens e impõe desafios. Se por um lado temos um controle mais refinado da construção da interface de usuário e uma melhora na manutenabilidade do código da view, por outro temos que lidar com a definição manual de *constraints*, a necessidade de um novo *build* para visualizar as mudanças na falta de um *preview nativo* e o aumento da quantidade de código.
 
-Para facilitar o trabalho com *constraints* é possível estabelecer padrões com protocolos, *case-less enums* e *associatedtypes* para que o código da *view *seja mais limpo e organizado e mais facil de escalar.
+Para facilitar o trabalho com *constraints* é possível estabelecer padrões com protocolos, *case-less enums* e *associatedtypes* para que o código da *view* seja mais limpo e organizado e mais facil de escalar.
 
 O exemplo desse *post* limitou-se apenas ao uso de recursos da *UIKit*, mas também é possível usar libs terceiras como [*Snapkit*](https://github.com/SnapKit/SnapKit) e o [testes de *snapshot*](https://github.com/ashfurrow/Nimble-Snapshots) para facilitar a definição de *constraints* e a visualização do *layout* construído.
